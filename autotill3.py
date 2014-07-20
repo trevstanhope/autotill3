@@ -22,7 +22,6 @@ import time
 import sys
 from datetime import datetime
 import ast
-import Tkinter
 
 ## Constants
 try:
@@ -48,7 +47,7 @@ class Cultivator:
         self.__init_pid__()
         self.__init_arduino__()
         self.__init_gps__()
-        self.__init_display__()
+        ##self.__init_display__()
     
     def __init_cams__(self):
         # Cameras
@@ -323,7 +322,9 @@ class Cultivator:
         ## Generate output
         try:
             output = numpy.hstack(mod_images)
-            cv2.imshow('AutoTill 2.0', output)
+            cv2.namedWindow("AutoTill", cv2.WND_PROP_FULLSCREEN)          
+            cv2.setWindowProperty("AutoTill", cv2.WND_PROP_FULLSCREEN, cv2.cv.CV_WINDOW_FULLSCREEN)
+            cv2.imshow('AutoTill', output)
             if cv2.waitKey(5) == 27:
                 pass
         except Exception as error:
